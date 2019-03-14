@@ -68,11 +68,11 @@
         最简
       </li>
       <li @contextmenu="$easycm($event,$root,2)" style="background-color:#dd8896;">
-        <easy-cm :list="[{text: 'Hello '},{text: 'World '}]" :underline="true" :tag="2"></easy-cm>
+        <easy-cm :list="[{text: 'Hello '},{text: 'World '}]"  :tag="2"></easy-cm>
         下划线
       </li>
       <li @contextmenu="$easycm($event,$root,3)" style="background-color:#ddc663;">
-        <easy-cm :list="[{text: 'Hello '},{text: 'More',children:[{text:'Boen'},{text:'World'}]}]"  :underline="true" :arrow="true" :tag="3"></easy-cm>
+        <easy-cm :list="[{text: 'Hello '},{text: 'More',children:[{text:'Boen'},{text:'World'}]}]"   :arrow="true" :tag="3"></easy-cm>
         子层箭头
       </li>
       <li @contextmenu="$easycm($event,$root,4)" style="background-color:#d4b4dd;">
@@ -82,27 +82,27 @@
         },{
           text: 'Play Next',
           icon: 'iconfont icon-xiayishou'
-        }]" :underline="true" :arrow="true" :tag="4"></easy-cm>
+        }]"  :arrow="true" :tag="4"></easy-cm>
         字体图标
       </li>
       <li @contextmenu="$easycm($event,$root,5)" style="background-color:#a5dd68;">
-        <easy-cm :list="cmList" :underline="true" :arrow="true" :tag="5"></easy-cm>
+        <easy-cm :list="cmList"  :arrow="true" :tag="5"></easy-cm>
         多层菜单
       </li>
       <li @contextmenu="$easycm($event,$root,8)" style="background-color:#80a0ff;">
-        <easy-cm :list="cmList" :underline="true" :arrow="true" :tag="8" :offset="{x:20,y:20}"></easy-cm>
+        <easy-cm :list="cmList"  :arrow="true" :tag="8" :offset="{x:20,y:20}"></easy-cm>
         触发点偏移
       </li>
       <li @contextmenu="$easycm($event,$root,9)" style="background-color:#ffb4d2;">
-        <easy-cm :list="cmList" :underline="true" :arrow="true"  :tag="9" :item-width="200" :item-height="50"></easy-cm>
+        <easy-cm :list="cmList"  :arrow="true"  :tag="9" :item-width="200" :item-height="50"></easy-cm>
         选项宽高
       </li>
       <li class="li-6" @contextmenu="$easycm($event,$root,6)" style="background-color:#ffaa5d;">
-        <easy-cm :list="cmList" :underline="true" :arrow="true" :tag="6"></easy-cm>
+        <easy-cm :list="cmList"  :arrow="true" :tag="6"></easy-cm>
         自定义样式
       </li>
       <li @contextmenu="$easycm($event,$root,7)" style="background-color:#58c0dd;">
-        <easy-cm :list="cmList" @ecmcb="test" :underline="true" :arrow="true" :tag="7"></easy-cm>
+        <easy-cm :list="cmList" @ecmcb="test"  :arrow="true" :tag="7"></easy-cm>
         回调函数
       </li>
     </ul>
@@ -114,29 +114,44 @@
     data:{
         msg: 'Welcome to Your Vue.js App',
         cmList: [{
+          id: 'aa',
           text: 'Play Now',
           hotKey: ['ctrl','x'],
           icon: 'iconfont icon-bofang'
         },{
+          id: 'bb',
+          disabled: true,
           text: 'Play Next',
           hotKey: ['ctrl','d'],
           icon: 'iconfont icon-xiayishou'
         },{
+          id: 'separator'
+        },{
+          id: 'cc',
           text: 'More',
           children: [{
+            id: 'dd',
             text: 'Download',
             children: []
           },{
+            id: 'ee',
+            disabled: true,
             text: 'Report'
           },{
+            id: 'separator'
+          },{
+            id: 'ff',
             text: 'Other',
             hotKey: ['ctrl','e'],
             icon: 'iconfont icon-bofang',
             children:[{
+              id: 'gg',
               text: 'Other-1'
             },{
+              id: 'hh',
               text: 'Other-2'
             },{
+              id: 'ii',
               text: 'Other-3'
             }]
           }]
