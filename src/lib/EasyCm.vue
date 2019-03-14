@@ -195,7 +195,7 @@
           }
         }
         this.show = false
-        this.$emit('ecmcb',indexList)
+        this.$emit('ecmcb',indexList, item)
       },
       upperKey (hotkeys) {
         if (typeof hotkeys == 'undefined'|| hotkeys == null || hotkeys.length == 0) return
