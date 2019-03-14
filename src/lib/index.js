@@ -1,4 +1,5 @@
 import EasyCm from './EasyCm.vue'
+import ShortKey from 'vue-shortkey'
 const VueEasyCm  = {
   install: function (Vue) {
     Vue.component('easy-cm', EasyCm)
@@ -16,6 +17,7 @@ const VueEasyCm  = {
 
 if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(VueEasyCm)
+    window.Vue.use(ShortKey)
 }
 
 export default VueEasyCm

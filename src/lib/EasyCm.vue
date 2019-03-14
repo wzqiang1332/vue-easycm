@@ -5,10 +5,11 @@
     <ul class="cm-ul cm-ul-1 easy-cm-ul"
         :class="underline?'cm-underline':''">
       <li v-for="(item, index) in list" :style="liStyle">
-        <div @click.stop="callback([index])"
+        <div v-shortkey="item.hotKey" @shortkey="callback([index], item.hotKey)" @click.stop="callback([index])"
              :class="firstLeft?'cm-left':''">
           <i :class="item.icon"></i>
-          <span>{{item.text}}</span>
+          <span class="item-content">{{item.text}}</span>
+          <span class="item-hotKey" v-if="typeof item.hotKey!='undefined'&&item.hotKey!=null&&item.hotKey.length>0">{{upperKey(item.hotKey)}}</span>
           <svg class="icon" aria-hidden="true"
                v-if="arrow && item.children && item.children.length > 0">
               <use xlink:href="#icon-youjiantou"></use>
@@ -22,9 +23,11 @@
           <li v-for="(second, si) in item.children"
               :style="liStyle">
             <div @click.stop="callback([index,si])"
+                 v-shortkey="second.hotKey" @shortkey="callback([index,si], second.hotKey)"
                  :class="secondLeft?'cm-left':''">
               <i :class="second.icon"></i>
               <span>{{second.text}}</span>
+              <span class="item-hotKey" v-if="typeof second.hotKey!='undefined'&&second.hotKey!=null&&second.hotKey.length>0" >{{upperKey(second.hotKey)}}</span>
               <svg class="icon" aria-hidden="true"
                    v-if="arrow && second.children && second.children.length > 0">
                   <use xlink:href="#icon-youjiantou"></use>
@@ -37,9 +40,10 @@
                 v-if="second.children && second.children.length > 0">
               <li v-for="(third, ti) in second.children"
                   :style="liStyle">
-                <div @click.stop="callback([index,si,ti])">
+                <div @click.stop="callback([index,si,ti])" v-shortkey="third.hotKey" @shortkey="callback([index,si,ti], third.hotKey)">
                   <i :class="third.icon"></i>
                   <span>{{third.text}}</span>
+                  <span class="item-hotKey" v-if="typeof third.hotKey!='undefined'&&third.hotKey!=null&&third.hotKey.length>0" >{{upperKey(third.hotKey)}}</span>
                 </div>
               </li>
             </ul>
@@ -49,7 +53,6 @@
     </ul>
   </div>
 </template>
-
 <script>
   export default {
     name: 'EasyCm',
@@ -171,8 +174,25 @@
           top: cy > bh ? -(this.list[i].children[si].children.length - 1) * this.itemHeight + 'px' : 0
         }
       },
-      callback (indexList){
+      callback (indexList, hotkeys){
+        if (hotkeys && indexList.length > 1) {
+          if (window.getComputedStyle(this.$el.lastChild.childNodes[2].lastChild.childNodes[0].parentNode).display === 'none') {
+            return
+          }
+        }
+        if (hotkeys) {
+          this.show = false
+        }
         this.$emit('ecmcb',indexList)
+      },
+      upperKey (hotkeys) {
+        if (typeof hotkeys == 'undefined'|| hotkeys == null || hotkeys.length == 0) return
+        let hotKeyLabel = ''
+        for (let i = 0; i < hotkeys.length; i++) {
+          hotKeyLabel += hotkeys[i].substring(0,1).toUpperCase() + hotkeys[i].substring(1, hotkeys[i].length) + '-'
+        }
+        hotKeyLabel = hotKeyLabel.substring(0, hotKeyLabel.length - 1)
+        return hotKeyLabel
       }
     }
   }
@@ -260,5 +280,13 @@
   }
   .cm-underline li div:hover:after,.cm-underline>li:first-child>div:after{
     display: none;
+  }
+  .item-content {
+
+  }
+  .item-hotKey{
+    float: right;
+    color: #aaa;
+    font-size: 12px;
   }
 </style>

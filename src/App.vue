@@ -15,6 +15,7 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       cmList: [{
         text: 'Play Now',
+        hotKey: 'ctrl-alt-o',
         icon: 'iconfont icon-bofang'
       },{
         text: 'Play Next',

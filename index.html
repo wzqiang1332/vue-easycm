@@ -54,6 +54,7 @@
       </style>
       <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./dist/vue-easycm.js"></script>
+    <script src="./node_modules/vue-shortkey/dist/index.js"></script>
   </head>
   <body>
   <div id="app">
@@ -63,7 +64,7 @@
     <h4>调整网页宽高查看边界检测</h4>
     <ul class="demo-ul">
       <li @contextmenu="$easycm($event,$root,1)" style="background-color:#509992;">
-        <easy-cm :list="[{text: 'Hello '},{text: 'World '}]" :tag="1"></easy-cm>
+        <easy-cm :list="[{text: 'Hello ',hotKey: ['ctrl','alt','o']},{text: 'World '}]" :tag="1"></easy-cm>
         最简
       </li>
       <li @contextmenu="$easycm($event,$root,2)" style="background-color:#dd8896;">
@@ -114,9 +115,11 @@
         msg: 'Welcome to Your Vue.js App',
         cmList: [{
           text: 'Play Now',
+          hotKey: ['ctrl','x'],
           icon: 'iconfont icon-bofang'
         },{
           text: 'Play Next',
+          hotKey: ['ctrl','d'],
           icon: 'iconfont icon-xiayishou'
         },{
           text: 'More',
@@ -127,6 +130,7 @@
             text: 'Report'
           },{
             text: 'Other',
+            hotKey: ['ctrl','e'],
             icon: 'iconfont icon-bofang',
             children:[{
               text: 'Other-1'
