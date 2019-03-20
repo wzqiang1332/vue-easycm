@@ -9,6 +9,7 @@
 
 | list                                                 |
 | ---------------------------------------------------- |
+| ---- 2019年3月，增加disabled配置，增加快捷键设置       |
 | ---- 2018年5月25日08:58:15  修复滚动后位置错误       |
 | ---- 2018年5月25日15:22:13  调整菜单隐藏事件触发顺序 |
 | ---- 2018年6月14日14:51:06  修复回调函数触发问题     |
@@ -125,8 +126,14 @@ var VueEasyCm = require('VueEasyCm')
          icon: 'iconfont icon-bofang',  //选填 字体图标 class
          children: [] //选填
    }]
+   [{
+        id: 'aa',
+        disabled: true,  // 选填，不可点击
+        text: 'Play Now',
+        hotKey: ['ctrl','x'],  // 选填，设置快捷键
+        icon: 'iconfont icon-bofang'
+   }]
    ```
-
    *嵌套的子项格式一致
 
    ​
