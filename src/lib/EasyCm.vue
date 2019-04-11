@@ -22,8 +22,8 @@
             v-if="item.children && item.children.length > 0" >
           <li v-for="(second, si) in item.children"
               :style="liStyle" :class="liClass(second)">
-            <div @click.stop="callback([index,second],second)"
-                 v-shortkey="second.hotKey" @shortkey="callback([index,second],second)"
+            <div @click.stop="callback([index,si],second)"
+                 v-shortkey="second.hotKey" @shortkey="callback([index,si],second)"
                  :class="secondLeft?'cm-left':''"  v-if="second.id!='separator'">
               <i :class="second.icon"></i>
               <span>{{second.text}}</span>
